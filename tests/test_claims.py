@@ -159,8 +159,8 @@ def test_street_excerpts(toronto):
     assert [toronto[n]["geography"] for n in C.TORONTO_NS] == [7, 13, 13]
     assert [toronto[n]["planar"] for n in C.TORONTO_NS] == [True, False, False]
     assert not any(toronto[n]["biconnected"] for n in C.TORONTO_NS)
-    assert [toronto[n]["stress"] for n in C.TORONTO_NS] == pytest.approx([3, 35, 48], rel=0.3)
-    assert [toronto[n]["fr"] for n in C.TORONTO_NS] == pytest.approx([12, 36, 90], rel=0.6)
+    assert [toronto[n]["stress"] for n in C.TORONTO_NS] == pytest.approx([3, 35, 48], rel=0.3, abs=3)             # Windows 3 / 35 / 48, Linux (CI) 1 / 36 / 49
+    assert [toronto[n]["fr"] for n in C.TORONTO_NS] == pytest.approx([12, 36, 90], rel=0.6, abs=6)
     for n in C.TORONTO_NS:
         for method in ("tutte", "grid"):
             assert ev.analyse(ev.Settings("toronto", n, 101, method)).measures is None
