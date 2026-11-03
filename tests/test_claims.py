@@ -128,7 +128,7 @@ def test_maps_with_missing_edges_make_tutte_collapse_vertices_while_the_crossing
 
 def test_spring_model_with_many_starts_never_reaches_zero_crossings(starts):
     assert [starts[n]["zero_maps"] for n in C.STARTS_NS] == [0, 0, 0]
-    assert [(starts[n]["best_min"], starts[n]["best_max"]) for n in C.STARTS_NS] == pytest.approx([(5, 19), (11, 32), (31, 103)], rel=0.5)
+    assert [v for n in C.STARTS_NS for v in (starts[n]["best_min"], starts[n]["best_max"])] == pytest.approx([5, 19, 11, 32, 31, 103], rel=0.5)
     assert all(starts[n]["maps"] == 10 and starts[n]["starts"] == 20 for n in C.STARTS_NS)
     assert [starts[n]["median"] for n in C.STARTS_NS] == pytest.approx([16, 24, 81.5], rel=0.3)
 
